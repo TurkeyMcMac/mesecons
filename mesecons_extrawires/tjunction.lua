@@ -39,6 +39,7 @@ minetest.register_node("mesecons_extrawires:tjunction_on", {
 	mesecons = {conductor =
 	{
 		state = mesecon.state.on,
+		const_node = true,
 		rules = tjunction_get_rules,
 		offstate = "mesecons_extrawires:tjunction_off"
 	}},
@@ -69,6 +70,7 @@ minetest.register_node("mesecons_extrawires:tjunction_off", {
 	mesecons = {conductor =
 	{
 		state = mesecon.state.off,
+		const_node = true,
 		rules = tjunction_get_rules,
 		onstate = "mesecons_extrawires:tjunction_on"
 	}},
