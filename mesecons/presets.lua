@@ -64,12 +64,15 @@ local rules_buttonlike = {
 }
 
 local function rules_from_dir(ruleset, dir)
-	if dir.x ==  1 then return ruleset.xp end
-	if dir.y ==  1 then return ruleset.yp end
-	if dir.z ==  1 then return ruleset.zp end
-	if dir.x == -1 then return ruleset.xn end
-	if dir.y == -1 then return ruleset.yn end
-	if dir.z == -1 then return ruleset.zn end
+	if dir then
+		if dir.x ==  1 then return ruleset.xp end
+		if dir.y ==  1 then return ruleset.yp end
+		if dir.z ==  1 then return ruleset.zp end
+		if dir.x == -1 then return ruleset.xn end
+		if dir.y == -1 then return ruleset.yn end
+		if dir.z == -1 then return ruleset.zn end
+	end
+	return {}
 end
 
 mesecon.rules.wallmounted_get = function(node)
