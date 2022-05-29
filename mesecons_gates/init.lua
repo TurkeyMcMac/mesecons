@@ -88,10 +88,10 @@ local function register_gate(name, inputnumber, assess, recipe, description)
 		groups = {dig_immediate = 2, overheat = 1},
 		mesecons = { receptor = {
 			state = "off",
-			const_node = true,
+			rule_node_nocopy = true,
 			rules = gate_get_output_rules
 		}, effector = {
-			const_node = true,
+			rule_node_nocopy = true,
 			rules = get_inputrules,
 			action_change = update_gate
 		}}
@@ -109,10 +109,10 @@ local function register_gate(name, inputnumber, assess, recipe, description)
 		groups = {dig_immediate = 2, not_in_creative_inventory = 1, overheat = 1},
 		mesecons = { receptor = {
 			state = "on",
-			const_node = true,
+			rule_node_nocopy = true,
 			rules = gate_get_output_rules
 		}, effector = {
-			const_node = true,
+			rule_node_nocopy = true,
 			rules = get_inputrules,
 			action_change = update_gate
 		}}
