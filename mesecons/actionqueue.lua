@@ -64,6 +64,8 @@ function queue:add_action(pos, func, params, time, overwritecheck, priority)
 	table.insert(self.actions, action)
 end
 
+local sum = 0
+
 -- execute the stored functions on a globalstep
 -- if however, the pos of a function is not loaded (get_node_or_nil == nil), do NOT execute the function
 -- this makes sure that resuming mesecons circuits when restarting minetest works fine (hm, where do we do this?)
@@ -77,6 +79,8 @@ local function globalstep_func(dtime)
 	-- queue.actions: actions to execute later
 	local actions_now = {}
 	queue.actions = {}
+	if #actions == 0 then return end
+	local before = minetest.get_us_time()
 
 	for _, ac in ipairs(actions) do
 		if ac.time > 0 then
@@ -110,6 +114,10 @@ local function globalstep_func(dtime)
 	for _, ac in ipairs(actions_now) do
 		queue:execute(ac)
 	end
+
+	local after = minetest.get_us_time()
+	sum = sum + (after - before)
+	minetest.log("error", sum / 1000000)
 end
 
 -- delay the time the globalsteps start to be execute by 4 seconds
